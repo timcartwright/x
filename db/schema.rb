@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151224133603) do
+ActiveRecord::Schema.define(version: 20151224140800) do
+
+  create_table "game_locations", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.decimal  "lat"
+    t.decimal  "long"
+    t.integer  "game_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "game_locations", ["game_id"], name: "index_game_locations_on_game_id"
 
   create_table "games", force: :cascade do |t|
     t.string   "name"
@@ -23,6 +35,18 @@ ActiveRecord::Schema.define(version: 20151224133603) do
   end
 
   add_index "games", ["user_id"], name: "index_games_on_user_id"
+
+  create_table "locations", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.decimal  "lat"
+    t.decimal  "long"
+    t.integer  "game_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "locations", ["game_id"], name: "index_locations_on_game_id"
 
   create_table "players", force: :cascade do |t|
     t.string   "name"
