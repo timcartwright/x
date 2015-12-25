@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col l6 s12">
+    <h2>Your Games</h2>
+    <% if @games.any? %>
+      <ul class="collapsible popout" data-collapsible="accordion">
+        <% @games.each do |game| %>
+          <li>
+            <div class="collapsible-header">
+              <i class="material-icons">group_work</i>
+              <%= game.name %>
+            </div>
+            <div class="collapsible-body">
+              <p><%= game.description %></p>
+              <p><%= link_to 'Go', game_path(game) %></p>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+
+  <div class="col l6 s12">
+    <div id="new-game-form">
+      <h4>Create a new game</h4>
+      <%= simple_form_for @game, html: { novalidate: false } do |f| %>
+        <%= f.input :name %>
+        <%= f.input :description %>
+        <%= f.input :instructions, input_html: {class: 'materialize-textarea'} %>
+        <%= f.button :button %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+    
