@@ -15,6 +15,7 @@
 class Location < ActiveRecord::Base
   belongs_to :game
   has_many :tasks
+  has_one :clue
 
   validates :name, :description, presence: true
   validates :lat, :long, presence: true, numericality: true

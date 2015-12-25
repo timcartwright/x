@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151225062226) do
+ActiveRecord::Schema.define(version: 20151225064130) do
+
+  create_table "clues", force: :cascade do |t|
+    t.integer  "location_id"
+    t.string   "riddle"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "clues", ["location_id"], name: "index_clues_on_location_id"
 
   create_table "game_locations", force: :cascade do |t|
     t.string   "name"
@@ -57,6 +66,17 @@ ActiveRecord::Schema.define(version: 20151225062226) do
   end
 
   add_index "players", ["game_id"], name: "index_players_on_game_id"
+
+  create_table "solutions", force: :cascade do |t|
+    t.integer  "player_id"
+    t.integer  "clue_id"
+    t.boolean  "solved"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "solutions", ["clue_id"], name: "index_solutions_on_clue_id"
+  add_index "solutions", ["player_id"], name: "index_solutions_on_player_id"
 
   create_table "tasks", force: :cascade do |t|
     t.string   "question"

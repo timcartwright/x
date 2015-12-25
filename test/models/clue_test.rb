@@ -1,15 +1,18 @@
 # == Schema Information
 #
-# Table name: tasks
+# Table name: clues
 #
 #  id          :integer          not null, primary key
-#  question    :string
-#  answer      :string
 #  location_id :integer
+#  riddle      :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
 
-class Task < ActiveRecord::Base
-  belongs_to :location
+require 'test_helper'
+
+class ClueTest < ActiveSupport::TestCase
+  # test "the truth" do
+  #   assert true
+  # end
 end

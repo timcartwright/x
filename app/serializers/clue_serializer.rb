@@ -1,15 +1,15 @@
 # == Schema Information
 #
-# Table name: tasks
+# Table name: clues
 #
 #  id          :integer          not null, primary key
-#  question    :string
-#  answer      :string
 #  location_id :integer
+#  riddle      :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
 
-class Task < ActiveRecord::Base
-  belongs_to :location
+class ClueSerializer < ActiveModel::Serializer
+  attributes :id, :riddle
+  has_one :location
 end

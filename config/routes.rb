@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :solutions
+  resources :clues
   resources :tasks
   resources :locations
   resources :players
