@@ -13,13 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require materialize-sprockets
+//= require jquery.turbolinks
 //= require turbolinks
 //= require_tree .
 
 $(document).on('ready page:load', function() {
   $(".button-collapse").sideNav();
   
-  $('#add-new-game').click(function() {
-    $('#new-game-form').toggleClass('hide');
-  })
 });
