@@ -13,7 +13,8 @@
 
 class Game < ActiveRecord::Base
   belongs_to :user
-  has_many :players, :locations
+  has_many :players
+  has_many :locations
 
   validates :name, :description, :instructions, presence: true
 end
