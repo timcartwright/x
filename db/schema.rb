@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151225064130) do
+ActiveRecord::Schema.define(version: 20151225064448) do
+
+  create_table "accomplishments", force: :cascade do |t|
+    t.integer  "player_id"
+    t.integer  "task_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "accomplishments", ["player_id"], name: "index_accomplishments_on_player_id"
+  add_index "accomplishments", ["task_id"], name: "index_accomplishments_on_task_id"
 
   create_table "clues", force: :cascade do |t|
     t.integer  "location_id"

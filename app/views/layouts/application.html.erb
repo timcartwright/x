@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Tx</title>
+  <title>X</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-<%= yield %>
+<%= render "common/header" %>
+<div class="container">
+  <div class="flash_messages">
+    <%= flash_tag(notice, "notice") %>
+    <%= flash_tag(alert, "alert") %>
+  </div>
+  <%= yield %>
+</div>
 
 </body>
 </html>
