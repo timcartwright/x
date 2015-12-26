@@ -16,7 +16,6 @@ class GamesController < ApplicationController
     game = Game.new(game_params)
     game.user = current_user
     game.save!
-    redirect_to games_path
   end
 
 private

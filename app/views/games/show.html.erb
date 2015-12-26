@@ -14,7 +14,7 @@
     <p><%= @game.instructions %></p>
     <div class="row">
       <h4>Players</h4>
-      <%= simple_form_for [@game, @player] do |f| %>
+      <%= simple_form_for [@game, @player], remote: true do |f| %>
         <%= f.input :phone, wrapper_html: {class: 'input-field col s12'} %>
         <div class="form-actions">
           <%= f.button :button, raw('<i class="material-icons left">add</i>Add Player'), class: 'waves-effect waves-light btn' %>
@@ -23,11 +23,9 @@
     </div>
     <div class="row">
       <div class="col l6 s12">
-        <ul class="collection">
+        <ul id="players-list" class="collection">
         <% @players.each do |player| %>
-          <li class="collection-item">
-            <%= player.phone %>
-          </li>
+          <li class="collection-item"><div><%= player.phone %><a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
         <% end %>
         </ul>
       </div>
