@@ -1,29 +1,35 @@
-var ready = function() {
+var locationMap = function() {
 
-  var zValue = 12;
-  var lat = -20.3;
-  var lng = 57.4;
+  if (document.getElementById('new-location-map')) {
+    renderNewLocationMap();
+  };
 
-  var myLatlng = new google.maps.LatLng(lat,lng),
+  function renderNewLocationMap() {
+    var zValue = 12;
+    var lat = -20.3;
+    var lng = 57.4;
 
-  mapOptions = {
-    zoom: zValue,
-    center: myLatlng
-  },
+    var myLatlng = new google.maps.LatLng(lat,lng);
 
-  map = new google.maps.Map(document.getElementById('map'),mapOptions),
+    var mapOptions = {
+      zoom: zValue,
+      center: myLatlng
+    };
 
-  marker = new google.maps.Marker({
-    position: myLatlng,
-    map: map,
-    draggable: true
-  });
+    var map = new google.maps.Map(document.getElementById('new-location-map'),mapOptions);
 
-  google.maps.event.addListener(marker, 'dragend', function(evt) {
-    console.log('Current Latitude:',evt.latLng.lat(),'Current Longitude:',evt.latLng.lng());
-    document.getElementById('location_lat').value = evt.latLng.lat();
-    document.getElementById('location_long').value = evt.latLng.lng();
-  });
+    var marker = new google.maps.Marker({
+      position: myLatlng,
+      map: map,
+      draggable: true
+    });
+
+    google.maps.event.addListener(marker, 'dragend', function(evt) {
+      console.log('Current Latitude:',evt.latLng.lat(),'Current Longitude:',evt.latLng.lng());
+      document.getElementById('location_lat').value = evt.latLng.lat();
+      document.getElementById('location_long').value = evt.latLng.lng();
+    });
+  };
 }
 
-$(document).ready(ready);
+$(document).ready(locationMap);
