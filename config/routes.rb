@@ -7,12 +7,14 @@ Rails.application.routes.draw do
   root 'home#index'
   devise_for :users
 
-  resources :accomplishments
-  resources :solutions
-  resources :clues
-  resources :tasks
-  resources :locations
-  resources :players
-  resources :games
+  resources :games do
+    resources :accomplishments
+    resources :solutions
+    resources :players
+    resources :locations do
+      resources :tasks
+      resources :clues
+    end
+  end
   
 end
