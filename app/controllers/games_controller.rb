@@ -8,6 +8,8 @@ class GamesController < ApplicationController
   def show
     @game = Game.find(params[:id])
     @locations = @game.locations.all
+    @players = @game.players.all
+    @player = Player.new
   end
 
   def create

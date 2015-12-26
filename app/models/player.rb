@@ -13,5 +13,5 @@
 class Player < ActiveRecord::Base
   belongs_to :game
 
-  validates :name, :phone, presence: true
+  validates :phone, presence: true
 end
