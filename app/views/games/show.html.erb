@@ -5,10 +5,14 @@
   </div>
 
   <div class="col l6 s12">
+    <p>
+      <%= link_to raw('<i class="material-icons left">add</i>Add Location'), new_game_location_path(@game), class: 'waves-effect waves-light btn' %>
+    </p>
     <h2><%= @game.name %></h2>
     <p><%= @game.description %></p>
     <h4>Instructions</h4>
     <p><%= @game.instructions %></p>
+    
   </div>
 
 </div>

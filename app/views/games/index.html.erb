@@ -1,3 +1,4 @@
+<div class="container">
 <div class="row">
   <div class="col l6 s12">
     <h2>Your Games</h2>
@@ -11,7 +12,9 @@
             </div>
             <div class="collapsible-body">
               <p><%= game.description %></p>
-              <p><%= link_to 'Go', game_path(game) %></p>
+              <p>
+                <%= link_to 'View Game', game_path(game), class: 'waves-effect waves-light btn' %>
+              </p>
             </div>
           </li>
         <% end %>
@@ -31,6 +34,6 @@
     </div>
   </div>
 </div>
-
+</div>
 
     

@@ -6,6 +6,9 @@
 
 
   <div class="col l6 s12">
+    <p>
+      <%= link_to raw('<i class="material-icons left">arrow_back</i>Back to Game'), game_path(@game), class: 'waves-effect waves-light btn' %>
+    </p>
     <h3>New Location</h3>
     <%= simple_form_for [@game, @location], wrapper: :materialize_form do |f| %>
     <%= f.error_notification %>
