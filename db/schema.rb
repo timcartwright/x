@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151225064448) do
+ActiveRecord::Schema.define(version: 20151226074304) do
 
   create_table "accomplishments", force: :cascade do |t|
     t.integer  "player_id"
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20151225064448) do
     t.integer  "game_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.text     "clue"
   end
 
   add_index "locations", ["game_id"], name: "index_locations_on_game_id"
