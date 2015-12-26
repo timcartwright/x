@@ -25,7 +25,6 @@ var locationMap = function() {
     });
 
     google.maps.event.addListener(marker, 'dragend', function(evt) {
-      console.log('Current Latitude:',evt.latLng.lat(),'Current Longitude:',evt.latLng.lng());
       document.getElementById('location_lat').value = evt.latLng.lat();
       document.getElementById('location_long').value = evt.latLng.lng();
     });

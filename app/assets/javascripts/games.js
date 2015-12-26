@@ -8,10 +8,8 @@ var gameMap = function() {
     
     var locations = $('.locations_class').data('locations');
     var zValue = 12;
-    var lat = -20.3;
-    var lng = 57.4;
 
-    var myLatlng = new google.maps.LatLng(lat,lng);
+    var myLatlng = new google.maps.LatLng(locations[0].lat,locations[0].long);
 
     var mapOptions = {
       zoom: zValue,
