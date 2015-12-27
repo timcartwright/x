@@ -1,6 +1,6 @@
 $('#players-list').prepend('<li id="player_<%= @player.id %>" class="collection-item">' +
                             '<div><%= @player.phone %>' +
                             '<a href="#!" class="secondary-content"><i class="material-icons">face</i></a>'+
-                            '<%= link_to raw("&times;"), game_player_path(@game, @player), class: "secondary-content", method: :delete, data: {confirm: "Are you sure you want to delete the message?"} %>' +
+                            '<%= link_to raw("&times;"), game_player_path(@game, @player), class: "secondary-content", method: :delete, remote: true %>' +
                             '</div>' +
                             '</li>');

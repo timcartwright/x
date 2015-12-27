@@ -47,7 +47,7 @@
             <div><%= player.phone %>
       
               <a href="#!" class="secondary-content"><i class="material-icons">face</i></a>
-              <%= link_to raw('<i class="material-icons">delete</i>'), game_player_path(@game, player), class: "secondary-content", method: :delete, remote: true, data: {confirm: "Are you sure you want to delete the message?"} %>
+              <%= link_to raw('<i class="material-icons">delete</i>'), game_player_path(@game, player), class: "secondary-content", method: :delete, remote: true %>
             </div>
           </li>
         <% end %>
