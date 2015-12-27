@@ -1,17 +1,35 @@
 <div class="row">
-
-  <div class="col l6 s12">
-    <div id="game-map"></div>
-  </div>
-
-  <div class="col l6 s12">
-    <p>
-      <%= link_to raw('<i class="material-icons left">add</i>Add Location'), new_game_location_path(@game), class: 'waves-effect waves-light btn' %>
-    </p>
-    <h2><%= @game.name %></h2>
+  <div class="col l3 s12">
+    <h3><%= @game.name %></h3>
     <p><%= @game.description %></p>
     <h4>Instructions</h4>
     <p><%= @game.instructions %></p>
+  </div>
+
+  <div class="col l6 s12">
+    <h4>Locations</h4>
+    <div id="game-map"></div>
+    <p>
+      <a id="new-location" href='#' class='waves-effect waves-light btn'><i class="material-icons left">add</i>Add Location</a>
+    </p>
+    <%= simple_form_for [@game, @location], wrapper: :materialize_form do |f| %>
+    <%= f.error_notification %>
+
+    <div class="row">
+      <%= f.input :lat, wrapper_html: {id: 'lat', class: 'input-field col s6'} %>
+      <%= f.input :long, wrapper_html: {id: 'long', class: 'input-field col s6'} %>
+      <%= f.input :name, wrapper_html: {class: 'input-field col s12'} %>
+      <%= f.input :description, wrapper_html: {class: 'input-field col s12'} %>
+      <%= f.input :clue, input_html: {class: 'materialize-textarea'}, wrapper_html: {class: 'input-field col s12'} %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :button, class: 'waves-effect waves-light btn' %>
+    </div>
+    <% end %>
+  </div>
+
+  <div class="col l3 s12">
     <div class="row">
       <h4>Players</h4>
       <%= simple_form_for [@game, @player], remote: true do |f| %>
@@ -22,7 +40,7 @@
       <% end %>
     </div>
     <div class="row">
-      <div class="col l6 s12">
+      <div class="col l12 s12">
         <ul id="players-list" class="collection">
         <% @players.each do |player| %>
           <li class="collection-item"><div><%= player.phone %><a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>

@@ -10,6 +10,7 @@ class GamesController < ApplicationController
     @locations = @game.locations.all
     @players = @game.players.all
     @player = Player.new
+    @location = Location.new
   end
 
   def create

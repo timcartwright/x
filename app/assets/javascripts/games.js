@@ -1,4 +1,15 @@
 var gameMap = function() {
+  
+  var map;
+  var mapOptions;
+  var clicked = false;
+
+  $('#new-location').click( function() {
+    if (!clicked) {
+      newLocation();
+    };
+  });
+
 
   if (document.getElementById('game-map')) {
     renderGameMap();
@@ -13,12 +24,12 @@ var gameMap = function() {
 
     var myLatlng = new google.maps.LatLng(locations[0].lat,locations[0].long);
 
-    var mapOptions = {
+    mapOptions = {
       zoom: zValue,
       center: myLatlng
     };
 
-    var map = new google.maps.Map(document.getElementById('game-map'),mapOptions);
+    map = new google.maps.Map(document.getElementById('game-map'),mapOptions);
     var contentString = [];
 
     for(var i=0; i<locations.length; i++) {
@@ -37,6 +48,7 @@ var gameMap = function() {
       myLatlng = new google.maps.LatLng(locations[i].lat,locations[i].long);
 
       var marker = new google.maps.Marker({
+        icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
         position: myLatlng,
         map: map,
         title: locations[i].name
@@ -52,6 +64,26 @@ var gameMap = function() {
     };
   };
 
+  function newLocation() {
+
+    clicked = true;
+
+    var marker = new google.maps.Marker({
+      icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
+      position: mapOptions.center,
+      map: map,
+      draggable: true
+    });
+
+    google.maps.event.addListener(marker, 'dragend', function(evt) {
+      $('#location_lat').val(evt.latLng.lat());
+      $('#location_long').val(evt.latLng.lng());
+      $('#lat > label').addClass('active');
+      $('#long > label').addClass('active');
+    });
+  };
+
 }
 
 $(document).ready(gameMap);
+
