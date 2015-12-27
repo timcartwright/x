@@ -4,14 +4,6 @@ var gameMap = function() {
   var mapOptions;
   var clicked = false;
 
-  $('#new-location').click( function(event) {
-    event.preventDefault();
-    if (!clicked) {
-      newLocation();
-    };
-  });
-
-
   if (document.getElementById('game-map')) {
     renderGameMap();
   };
@@ -62,26 +54,38 @@ var gameMap = function() {
         infowindow.setContent(contentString[i]);
         infowindow.open(map, this);
       });
+
+      map.addListener('click', function(event) {
+        if (!clicked) {
+          newLocation(event.latLng);
+        };
+      });
     };
   };
 
-  function newLocation() {
+  function newLocation(location) {
 
     clicked = true;
 
     var marker = new google.maps.Marker({
       icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
-      position: mapOptions.center,
+      position: location,
       map: map,
       draggable: true
     });
 
+    putLocationInForm(location);
+
     google.maps.event.addListener(marker, 'dragend', function(evt) {
-      $('#location_lat').val(evt.latLng.lat());
-      $('#location_long').val(evt.latLng.lng());
-      $('#lat > label').addClass('active');
-      $('#long > label').addClass('active');
+      putLocationInForm(evt.latLng);
     });
+  };
+
+  function putLocationInForm(location) {
+    $('#location_lat').val(location.lat());
+    $('#location_long').val(location.lng());
+    $('#lat > label').addClass('active');
+    $('#long > label').addClass('active');
   };
 
 }
