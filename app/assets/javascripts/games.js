@@ -1,8 +1,11 @@
 var map;
+var markers = [];
+var clicked = false;
+
 var gameMap = function() {
   
   var mapOptions;
-  var clicked = false;
+  
 
   if (document.getElementById('game-map')) {
     renderGameMap();
@@ -23,6 +26,13 @@ var gameMap = function() {
     };
 
     map = new google.maps.Map(document.getElementById('game-map'),mapOptions);
+
+    map.addListener('click', function(event) {
+      if (!clicked) {
+        newLocation(event.latLng);
+      };
+    });
+
     var contentString = [];
 
     for(var i=0; i<locations.length; i++) {
@@ -47,6 +57,8 @@ var gameMap = function() {
         title: locations[i].name
       });
 
+      markers.push(marker);
+
       var infowindow = new google.maps.InfoWindow(), marker, i;
 
       google.maps.event.addListener(marker, 'click', function(i) {
@@ -55,12 +67,7 @@ var gameMap = function() {
         infowindow.open(map, this);
       });
 
-      map.addListener('click', function(event) {
-        if (!clicked) {
-          newLocation(event.latLng);
-        };
-      });
-    };
+    }; // end for loop
   };
 
   function newLocation(location) {
@@ -73,7 +80,7 @@ var gameMap = function() {
       map: map,
       draggable: true
     });
-
+    markers.push(marker);
     putLocationInForm(location);
 
     google.maps.event.addListener(marker, 'dragend', function(evt) {

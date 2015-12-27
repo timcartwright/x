@@ -1,8 +1,37 @@
-console.log('created');
-var Latlng = new google.maps.LatLng(<%= @lat %>,<%= @long %>);
+// Replace the green pin with red
+function updateMap() {
+  var Latlng = new google.maps.LatLng(<%= @lat %>,<%= @long %>);
+  var marker = new google.maps.Marker({
+    icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
+    position: Latlng,
+    map: map
+  });
 
-var marker = new google.maps.Marker({
-  icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
-  position: Latlng,
-  map: map
-});
+  clearMarkers();
+  markers.pop();
+  setMapOnAll(map);
+  clicked = false;
+  resetForm(['lat', 'long', 'name', 'description', 'clue']);
+}
+
+// Sets the map on all markers in the array.
+function setMapOnAll(map) {
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(map);
+  }
+}
+
+// Removes the markers from the map, but keeps them in the array.
+function clearMarkers() {
+  setMapOnAll(null);
+}
+
+// Reset the form
+function resetForm(fields) {
+  for (var i=0; i < fields.length; i++) {
+    $('#location_' + fields[i]).val('');
+    $('.location_'+ fields[i] +' > label').removeClass('active');
+  }; 
+};
+
+updateMap();
