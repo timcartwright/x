@@ -1,6 +1,11 @@
+// Add Player to the list
 $('#players-list').prepend('<li id="player_<%= @player.id %>" class="collection-item">' +
                             '<div><%= @player.phone %>' +
                             '<a href="#!" class="secondary-content"><i class="material-icons">face</i></a>'+
                             '<%= link_to raw("&times;"), game_player_path(@game, @player), class: "secondary-content", method: :delete, remote: true %>' +
                             '</div>' +
                             '</li>');
+
+// Reset the form
+$('#player_phone').val('');
+$('.player_phone > label').removeClass('active');
