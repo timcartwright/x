@@ -5,4 +5,9 @@ class PlayersController < ApplicationController
     @player.game_id = (params[:game_id])
     @player.save!
   end
+
+  def destroy
+    @player = Player.find(params[:id])
+    @player.destroy!
+  end
 end

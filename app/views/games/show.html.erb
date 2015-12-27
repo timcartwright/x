@@ -43,7 +43,13 @@
       <div class="col l12 s12">
         <ul id="players-list" class="collection">
         <% @players.each do |player| %>
-          <li class="collection-item"><div><%= player.phone %><a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+          <li class="collection-item">
+            <div><%= player.phone %>
+      
+              <a href="#!" class="secondary-content"><i class="material-icons">face</i></a>
+              <%= link_to raw('<i class="material-icons">delete</i>'), game_player_path(@game, player), class: "secondary-content", method: :delete, data: {confirm: "Are you sure you want to delete the message?"} %>
+            </div>
+          </li>
         <% end %>
         </ul>
       </div>
