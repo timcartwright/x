@@ -12,7 +12,7 @@
     <p>
       <a id="new-location" href='#' class='btn-floating btn-large waves-effect waves-light'><i class="material-icons left">add</i></a>
     </p>
-    <%= simple_form_for [@game, @location], wrapper: :materialize_form do |f| %>
+    <%= simple_form_for [@game, @location], remote: true, wrapper: :materialize_form do |f| %>
     <%= f.error_notification %>
 
     <div class="row">

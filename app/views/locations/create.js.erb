@@ -1,0 +1,8 @@
+console.log('created');
+var Latlng = new google.maps.LatLng(<%= @lat %>,<%= @long %>);
+
+var marker = new google.maps.Marker({
+  icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
+  position: Latlng,
+  map: map
+});

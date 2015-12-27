@@ -1,6 +1,6 @@
+var map;
 var gameMap = function() {
   
-  var map;
   var mapOptions;
   var clicked = false;
 

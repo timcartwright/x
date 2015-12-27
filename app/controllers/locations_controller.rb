@@ -9,7 +9,8 @@ class LocationsController < ApplicationController
     game_id = params[:game_id]
     location.game_id = game_id
     location.save!
-    redirect_to game_path(game_id)
+    @lat = location.lat
+    @long = location.long
   end
 
 private
