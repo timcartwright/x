@@ -44,6 +44,7 @@ var gameMap = function() {
           '</h5>'+
           '<div id="bodyContent">'+
             locations[i].description +
+          '<p><a href="/games/' + locations[i].game_id + '/locations/' + locations[i].id + '">Go</a></p>' +
           '</div>'+
         '</div>';
 
