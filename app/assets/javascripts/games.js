@@ -4,7 +4,8 @@ var gameMap = function() {
   var mapOptions;
   var clicked = false;
 
-  $('#new-location').click( function() {
+  $('#new-location').click( function(event) {
+    event.preventDefault();
     if (!clicked) {
       newLocation();
     };
