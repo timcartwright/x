@@ -1,11 +1,12 @@
 var map;
 var markers = [];
+var infowindows = [];
+var content = [];
 var clicked = false;
 
 var gameMap = function() {
   
   var mapOptions;
-  
 
   if (document.getElementById('game-map')) {
     renderGameMap();
@@ -33,10 +34,8 @@ var gameMap = function() {
       };
     });
 
-    var contentString = [];
-
-    for(var i=0; i<locations.length; i++) {
-      contentString[i] =
+    for (var i = 0; i < locations.length; i++) {
+      content[i] =
         '<div id="content">'+
           '<div id="siteNotice">'+
           '</div>'+
@@ -56,18 +55,21 @@ var gameMap = function() {
         map: map,
         title: locations[i].name
       });
-
       markers.push(marker);
 
-      var infowindow = new google.maps.InfoWindow(), marker, i;
-
-      google.maps.event.addListener(marker, 'click', function(i) {
-        console.log(contentString[i]);
-        infowindow.setContent(contentString[i]);
-        infowindow.open(map, this);
+      var infowindow = new google.maps.InfoWindow({
+        content: content[i]
       });
+      infowindows.push(infowindow);
 
-    }; // end for loop
+      google.maps.event.addListener(markers[i], 'click', function(innerKey) {
+        return function() {
+          infowindows[innerKey].setContent(content[innerKey]);
+          infowindows[innerKey].open(map, markers[innerKey]);
+        };
+      }(i));
+
+    }; // end of for loop
   };
 
   function newLocation(location) {
@@ -80,6 +82,7 @@ var gameMap = function() {
       map: map,
       draggable: true
     });
+
     markers.push(marker);
     putLocationInForm(location);
 
@@ -98,4 +101,3 @@ var gameMap = function() {
 }
 
 $(document).ready(gameMap);
-
