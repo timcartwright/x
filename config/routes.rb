@@ -16,5 +16,19 @@ Rails.application.routes.draw do
       resources :clues
     end
   end
+
+  namespace :api do
+    namespace :v1 do
+      resources :games, only: [:index, :show], controller: "/games" do
+        resources :accomplishments
+        resources :solutions
+        resources :players, only: [:index, :show], controller: "/players"
+        resources :locations do
+          resources :tasks
+          resources :clues
+        end
+      end
+    end
+  end
   
 end
