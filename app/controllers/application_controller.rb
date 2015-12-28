@@ -4,4 +4,19 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :authenticate_user!
+
+  def authenticate_user!
+    if params[:authentication_token]
+      player = Player.find_by(phone: params[:authentication_token], game_id: params[:id])
+      if player
+        return true
+      else
+        sign_out
+        render json: {status: 503, message: "Access Denied"}
+        return false
+      end
+    else
+      super
+    end
+  end
 end
