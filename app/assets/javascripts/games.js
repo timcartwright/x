@@ -15,14 +15,15 @@ var gameMap = function() {
   function renderGameMap() {
     
     var locations = $('.locations_class').data('locations');
-    if (locations.length === 0) { return };
-    
-    var zValue = 12;
 
-    var myLatlng = new google.maps.LatLng(locations[0].lat,locations[0].long);
+    if (locations.length > 0) {
+      var myLatlng = new google.maps.LatLng(locations[0].lat,locations[0].long);
+    } else {
+      var myLatlng = new google.maps.LatLng(-20.25,57.57);
+    };
 
     mapOptions = {
-      zoom: zValue,
+      zoom: 10,
       center: myLatlng
     };
 
