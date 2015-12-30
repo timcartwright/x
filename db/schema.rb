@@ -32,18 +32,6 @@ ActiveRecord::Schema.define(version: 20151226074304) do
 
   add_index "clues", ["location_id"], name: "index_clues_on_location_id"
 
-  create_table "game_locations", force: :cascade do |t|
-    t.string   "name"
-    t.string   "description"
-    t.decimal  "lat"
-    t.decimal  "long"
-    t.integer  "game_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "game_locations", ["game_id"], name: "index_game_locations_on_game_id"
-
   create_table "games", force: :cascade do |t|
     t.string   "name"
     t.string   "description"

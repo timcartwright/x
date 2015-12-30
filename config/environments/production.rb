@@ -1,7 +1,17 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  config.action_mailer.default_url_options = { :host => 'peaceful-falls-4822.herokuapp.com' }
-
+  config.action_mailer.default_url_options = { host: 'tx.dokku.teasea.uk' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address => "smtp.mandrillapp.com",
+    :port => 587,
+    :user_name => 'info@get-muddy.com',
+    :password => 'B6CWdnyfJA1pChpwa6j6hA',
+    :authentication => 'login',
+    :enable_starttls_auto => true,
+    :openssl_verify_mode  => 'none'
+  }
+  
   # Code is not reloaded between requests.
   config.cache_classes = true
 
