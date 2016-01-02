@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
         return true
       else
         sign_out
-        render json: {status: 503, message: "Access Denied"}
+        render json: {status: 503, message: "Access Denied"}, status: :forbidden
         return false
       end
     else

@@ -24,6 +24,7 @@ gem 'active_model_serializers'
 gem 'active_hash_relation'
 gem 'materialize-sass'
 gem 'material_icons'
+gem 'rack-cors', :require => 'rack/cors'
 
 
 group :development do
